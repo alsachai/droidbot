@@ -424,12 +424,12 @@ class DeviceState(object):
                 touch_exclude_view_ids.add(view_id)
                 touch_exclude_view_ids.union(self.get_all_children(self.views[view_id]))
 
-        for view_id in enabled_view_ids:
+        '''for view_id in enabled_view_ids:
             if self.__safe_dict_get(self.views[view_id], 'scrollable'):
                 possible_events.append(ScrollEvent(view=self.views[view_id], direction="UP"))
                 possible_events.append(ScrollEvent(view=self.views[view_id], direction="DOWN"))
                 possible_events.append(ScrollEvent(view=self.views[view_id], direction="LEFT"))
-                possible_events.append(ScrollEvent(view=self.views[view_id], direction="RIGHT"))
+                possible_events.append(ScrollEvent(view=self.views[view_id], direction="RIGHT"))'''
 
         for view_id in enabled_view_ids:
             if self.__safe_dict_get(self.views[view_id], 'checkable'):

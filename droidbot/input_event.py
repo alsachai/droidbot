@@ -383,7 +383,8 @@ class KeyEvent(InputEvent):
         super().__init__()
         self.event_type = KEY_KeyEvent
         self.name = name
-        if event_dict is not None:
+        if event_dict is n
+        ot None:
             self.__dict__.update(event_dict)
 
     @staticmethod
@@ -421,8 +422,8 @@ class UIEvent(InputEvent):
         else:
             choices = {
                 TouchEvent: 6,
-                LongTouchEvent: 2,
-                SwipeEvent: 2
+                LongTouchEvent: 4
+                # SwipeEvent: 2
             }
             event_type = utils.weighted_choice(choices)
             return event_type.get_random_instance(device, app)

@@ -54,12 +54,12 @@ class EventGenerator:
             elif GESTURE_TYPES[gesture_val[0]] == "long_touch":
                 # print("long click")
                 event = LongTouchEvent(x=x_pos, y=y_pos, duration=2000)
-            elif GESTURE_TYPES[gesture_val[0]] == "scroll_up":
+            '''elif GESTURE_TYPES[gesture_val[0]] == "scroll_up":
                 # print("scroll up")
                 event = ScrollEvent(x=x_pos, y=y_pos, direction="UP")
             elif GESTURE_TYPES[gesture_val[0]] == "scroll_down":
                 # print("scroll down")
-                event = ScrollEvent(x=x_pos, y=y_pos, direction="DOWN")
+                event = ScrollEvent(x=x_pos, y=y_pos, direction="DOWN")'''
         elif ACTION_TYPES[action_val[0]] == 'intent':
             # print("action: intent")
             intent_list = self.action["broadcast"]
