@@ -10,7 +10,7 @@ from .utg import UTG
 # Max number of restarts
 MAX_NUM_RESTARTS = 5
 # Max number of steps outside the app
-MAX_NUM_STEPS_OUTSIDE = 5
+MAX_NUM_STEPS_OUTSIDE = 1
 MAX_NUM_STEPS_OUTSIDE_KILL = 10
 # Max number of replay tries
 MAX_REPLY_TRIES = 5
@@ -60,8 +60,8 @@ class InputPolicy(object):
         self.action_count = 0
         while input_manager.enabled and self.action_count < input_manager.event_count:
             try:
-                # # make sure the first event is go to HOME screen
-                # # the second event is to start the app
+                # make sure the first event is go to HOME screen
+                # the second event is to start the app
                 # if self.action_count == 0 and self.master is None:
                 #     event = KeyEvent(name="HOME")
                 # elif self.action_count == 1 and self.master is None:
@@ -259,7 +259,7 @@ class UtgNaiveSearchPolicy(UtgBasedInputPolicy):
         if view_to_touch_str.startswith('BACK'):
             result = KeyEvent('BACK')
         else:
-            result = TouchEvent(view=view_to_touch)
+        result = TouchEvent(view=view_to_touch)
 
         self.last_event_flag += EVENT_FLAG_TOUCH
         self.last_event_str = view_to_touch_str
@@ -420,7 +420,9 @@ class UtgGreedySearchPolicy(UtgBasedInputPolicy):
                     stop_app_intent = self.app.get_stop_intent()
                     go_back_event = IntentEvent(stop_app_intent)
                 else:
-                    go_back_event = KeyEvent(name="BACK")
+                    #go_back_event = KeyEvent(name="BACK")
+                    start_app_intent = self.app.get_start_intent()
+                    go_back_event = IntentEvent(intent=start_app_intent)
                 self.__event_trace += EVENT_FLAG_NAVIGATE
                 self.logger.info("Going back to the app...")
                 return go_back_event
@@ -494,8 +496,8 @@ class UtgGreedySearchPolicy(UtgBasedInputPolicy):
             new_idx[0], new_idx[new_first] = new_idx[new_first], new_idx[0]
 
         for idx in new_idx:
-            if isinstance(possible_events[idx], SetTextEvent):
-                possible_events[idx].text = text
+            '''if isinstance(possible_events[idx], SetTextEvent):
+                possible_events[idx].text = text'''
             new_events.append(possible_events[idx])
         return new_events
 

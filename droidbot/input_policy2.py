@@ -23,8 +23,8 @@ CLOSER_ACTION_ENCOURAGEMENT = 0.01
 RANDOM_EXPLORE_PROB = 0.4
 N_ACTIONS_TRAINING = 32
 
-MAX_NUM_STEPS_OUTSIDE = 3
-MAX_NUM_STEPS_OUTSIDE_KILL = 5
+MAX_NUM_STEPS_OUTSIDE = 0
+MAX_NUM_STEPS_OUTSIDE_KILL = 0
 MAX_NAV_STEPS = 10
 
 
@@ -593,7 +593,7 @@ class MemoryGuidedPolicy(UtgBasedInputPolicy):
 
         self.logger.info("trying random action")
         possible_events = current_state.get_possible_input()
-        possible_events.append(KeyEvent(name="BACK"))
+        # possible_events.append(KeyEvent(name="BACK"))
         random.shuffle(possible_events)
         return possible_events[0]
 

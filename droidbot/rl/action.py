@@ -24,7 +24,7 @@ class Action:
             gesture_type=spaces.Box(low=0, high=1, dtype=np.float, shape=(len(GESTURE_TYPES),)),
             gesture_pos=spaces.Box(low=0, high=1, dtype=np.float, shape=(SCREEN_H, SCREEN_W)),
             broadcast=spaces.Box(low=0, high=1, dtype=np.float, shape=(len(POSSIBLE_BROADCASTS),)),
-            key=spaces.Box(low=0, high=1, dtype=np.float, shape=(len(POSSIBLE_KEYS),))
+            #key=spaces.Box(low=0, high=1, dtype=np.float, shape=(len(POSSIBLE_KEYS),))
         ))
 
 
@@ -51,7 +51,8 @@ class EventGenerator:
             if GESTURE_TYPES[gesture_val[0]] == "touch":
                 # print("action: click")
                 event = TouchEvent(x_pos, y_pos)
-            elif GESTURE_TYPES[gesture_val[0]] == "long_touch":
+            # elif GESTURE_TYPES[gesture_val[0]] == "long_touch":
+            else:
                 # print("long click")
                 event = LongTouchEvent(x=x_pos, y=y_pos, duration=2000)
             '''elif GESTURE_TYPES[gesture_val[0]] == "scroll_up":
@@ -60,16 +61,17 @@ class EventGenerator:
             elif GESTURE_TYPES[gesture_val[0]] == "scroll_down":
                 # print("scroll down")
                 event = ScrollEvent(x=x_pos, y=y_pos, direction="DOWN")'''
-        elif ACTION_TYPES[action_val[0]] == 'intent':
+        # elif ACTION_TYPES[action_val[0]] == 'intent':
+        else:
             # print("action: intent")
             intent_list = self.action["broadcast"]
             intent_type = "adb shell am start -a " + POSSIBLE_BROADCASTS[np.unravel_index(intent_list.argmax(), intent_list.shape)[0]]
             event = IntentEvent(intent=intent_type)
-        elif ACTION_TYPES[action_val[0]] == 'key':
-            # print("action key press")
-            key_press_list = self.action['key']
-            key_press_type = POSSIBLE_KEYS[np.unravel_index(key_press_list.argmax(), key_press_list.shape)[0]]
-            event = KeyEvent(name=key_press_type)
+        # elif ACTION_TYPES[action_val[0]] == 'key':
+        #     # print("action key press")
+        #     key_press_list = self.action['key']
+        #     key_press_type = POSSIBLE_KEYS[np.unravel_index(key_press_list.argmax(), key_press_list.shape)[0]]
+        #     event = KeyEvent(name=key_press_type)
 
         return event
 

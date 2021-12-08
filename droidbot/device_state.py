@@ -441,12 +441,12 @@ class DeviceState(object):
             if self.__safe_dict_get(self.views[view_id], 'long_clickable'):
                 possible_events.append(LongTouchEvent(view=self.views[view_id]))
 
-        for view_id in enabled_view_ids:
+        '''for view_id in enabled_view_ids:
             if self.__safe_dict_get(self.views[view_id], 'editable'):
                 possible_events.append(SetTextEvent(view=self.views[view_id], text="HelloWorld"))
                 touch_exclude_view_ids.add(view_id)
                 # TODO figure out what event can be sent to editable views
-                pass
+                pass'''
 
         for view_id in enabled_view_ids:
             if view_id in touch_exclude_view_ids:
