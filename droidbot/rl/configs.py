@@ -456,14 +456,14 @@ SENSITIVE_APIS = [
 
 ACTION_TYPES = [
     'gesture',
-    'intent',
-    'key'
+    'intent'
+    #'key'
 ]
 
 GESTURE_TYPES = [
     'touch',
-    'long_touch',
-    'scroll_up',
-    'scroll_down'
+    'long_touch'
+    #'scroll_up',
+    #'scroll_down'
 ]
 
